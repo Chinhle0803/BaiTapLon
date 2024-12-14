@@ -1,11 +1,9 @@
-
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; img-src data:; connect-src 'self'">
-    <meta http-equiv="refresh" content="0; url=../HTML/home.html">
-    <title>Chuyển hướng</title>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản lý sản phẩm</title>
     <style type="text/css" media="screen">
       body {
         background-color: #f1f1f1;
@@ -13,45 +11,544 @@
         font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
       }
 
-      .container { margin: 50px auto 40px auto; width: 600px; text-align: center; }
+      .container { margin: 50px auto 40px auto; width: 800px; text-align: center; }
 
       a { color: #4183c4; text-decoration: none; }
       a:hover { text-decoration: underline; }
 
-      h1 { width: 800px; position:relative; left: -100px; letter-spacing: -1px; line-height: 60px; font-size: 60px; font-weight: 100; margin: 0px 0 50px 0; text-shadow: 0 1px 0 #fff; }
+      h1 { letter-spacing: -1px; line-height: 60px; font-size: 60px; font-weight: 100; margin: 0px 0 50px 0; text-shadow: 0 1px 0 #fff; }
       p { color: rgba(0, 0, 0, 0.5); margin: 20px 0; line-height: 1.6; }
 
-      ul { list-style: none; margin: 25px 0; padding: 0; }
-      li { display: table-cell; font-weight: bold; width: 1%; }
-
-      .logo { display: inline-block; margin-top: 35px; }
-      .logo-img-2x { display: none; }
-      @media
-      only screen and (-webkit-min-device-pixel-ratio: 2),
-      only screen and (   min--moz-device-pixel-ratio: 2),
-      only screen and (     -o-min-device-pixel-ratio: 2/1),
-      only screen and (        min-device-pixel-ratio: 2),
-      only screen and (                min-resolution: 192dpi),
-      only screen and (                min-resolution: 2dppx) {
-        .logo-img-1x { display: none; }
-        .logo-img-2x { display: inline-block; }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 20px 0;
       }
 
-      #suggestions {
-        margin-top: 35px;
-        color: #ccc;
-      }
-      #suggestions a {
-        color: #666666;
-        font-weight: 200;
-        font-size: 14px;
-        margin: 0 10px;
+      table, th, td {
+        border: 1px solid black;
       }
 
+      th, td {
+        padding: 10px;
+        text-align: left;
+      }
+
+      #product-details {
+        margin-top: 20px;
+        text-align: left;
+      }
     </style>
-  </head>
-  <body>
+</head>
+<body>
+    <div class="container">
+        <h1>Danh sách sản phẩm</h1>
+        <table id="product-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Tên sản phẩm</th>
+                    <th>Hình ảnh</th>
+                    <th>Giá</th>
+                    <th>Khuyến mãi</th>
+                    <th>Giảm giá</th>
+                    <th>Hành động</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Dữ liệu sản phẩm sẽ được thêm vào đây -->
+            </tbody>
+        </table>
+        <div id="product-details">
+            <h2>Chi tiết sản phẩm</h2>
+            <p id="product-info">Chọn một sản phẩm để xem chi tiết.</p>
+        </div>
+    </div>
 
-    <p>Đang chuyển hướng đến <a href="../HTML/home.html">Trang chủ</a>.</p>
-  </body>
+    <script src="data.js"></script>
+    <script>
+        // Hàm hiển thị danh sách sản phẩm
+        function displayProducts() {
+            const tableBody = document.querySelector('#product-table tbody');
+            tableBody.innerHTML = '';
+            productsData.newProducts.forEach(product => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${product.id}</td>
+                    <td>${product.name}</td>
+                    <td><img src="${product.image}" alt="${product.name}" width="50"></td>
+                    <td>${product.price.toLocaleString('vi-VN')} VND</td>
+                    <td>${product.promotion || ''}</td>
+                    <td>${product.decrease ? product.decrease.toLocaleString('vi-VN') + ' VND (' + product.discount + ')' : ''}</td>
+                    <td><button onclick="viewProduct(${product.id})">Xem</button></td>
+                `;
+                tableBody.appendChild(row);
+            });
+        }
+
+        // Hàm hiển thị chi tiết sản phẩm
+        function viewProduct(productId) {
+            const product = productsData.newProducts.find(p => p.id === productId);
+            const productInfo = document.getElementById('product-info');
+            if (product) {
+                productInfo.innerHTML = `
+                    <strong>ID:</strong> ${product.id}<br>
+                    <strong>Tên sản phẩm:</strong> ${product.name}<br>
+                    <strong>Hình ảnh:</strong> <img src="${product.image}" alt="${product.name}" width="100"><br>
+                    <strong>Giá:</strong> ${product.price.toLocaleString('vi-VN')} VND<br>
+                    <strong>Khuyến mãi:</strong> ${product.promotion || ''}<br>
+                    <strong>Giảm giá:</strong> ${product.decrease ? product.decrease.toLocaleString('vi-VN') + ' VND (' + product.discount + ')' : ''}
+                `;
+            } else {
+                productInfo.innerHTML = 'Không tìm thấy sản phẩm.';
+            }
+        }
+
+        // Hiển thị danh sách sản phẩm khi tải trang và hiển thị chi tiết sản phẩm đầu tiên
+        window.onload = function() {
+            displayProducts();
+            if (productsData.newProducts.length > 0) {
+                viewProduct(productsData.newProducts[0].id);
+            }
+        };
+    </script>
+    <script>
+        const productsData = {
+    newProducts: [{
+
+            id: 1,
+            name: "Sandal Cao Gót DL0565",
+            image: "../image/sanpham1.png",
+            price: 349000,
+            promotion: "new",
+        },
+        {
+            id: 2,
+            name: "Sandal Cao Gót DL0547",
+            image: "../image/sp2.png",
+            price: 379000,
+            promotion: "new",
+        },
+        {
+            id: 3,
+            name: "Dép Classic Lined Clog",
+            image: "../image/sp3.png",
+            price: 799000,
+            decrease: 399000,
+            discount: "-33%",
+        },
+        {
+            id: 4,
+            name: "Sandal Cao Gót DL0548",
+            image: "../image/sp4.png",
+            price: 369000,
+            promotion: "new",
+        },
+
+        {
+            id: 5,
+            name: "Sandal Cao Gót DL0549",
+            image: "../image/sp5.png",
+            price: 289000,
+            promotion: "new",
+        },
+        {
+            id: 6,
+            name: "Sandal Đế Đúp DL0546",
+            image: "../image/sp6.png",
+            price: 490000,
+            decrease: 329000,
+            discount: "-21%",
+        },
+        {
+            id: 7,
+            name: "Sandal Cao Gót DL0534",
+            image: "../image/sp7.png",
+            price: 389000,
+            decrease: 299000,
+            discount: "-20%",
+        },
+        {
+            id: 8,
+            name: "Sandal Cao Gót DL0548",
+            image: "../image/sp8.png",
+            price: 499999,
+            decrease: 399999,
+            discount: "-10%",
+        },
+    ],
+    sandal: [{
+
+        id: 1,
+        name: "Sandal Cao Gót DL0565",
+        image: "../image/sanpham1.png",
+        price: 349000,
+        promotion: "new",
+    },
+    {
+        id: 2,
+        name: "Sandal Cao Gót DL0547",
+        image: "../image/sp2.png",
+        price: 379000,
+        promotion: "new",
+    },
+    {
+        id: 3,
+        name: "Dép Classic Lined Clog",
+        image: "../image/sp3.png",
+        price: 799000,
+        decrease: 399000,
+        discount: "-33%",
+    },
+    {
+        id: 4,
+        name: "Sandal Cao Gót DL0548",
+        image: "../image/sp4.png",
+        price: 369000,
+        promotion: "new",
+    },
+
+    {
+        id: 5,
+        name: "Sandal Cao Gót DL0549",
+        image: "../image/sp5.png",
+        price: 289000,
+        promotion: "new",
+    },
+    {
+        id: 6,
+        name: "Sandal Đế Đúp DL0546",
+        image: "../image/sp6.png",
+        price: 490000,
+        decrease: 329000,
+        discount: "-21%",
+    },
+    {
+        id: 7,
+        name: "Sandal Cao Gót DL0534",
+        image: "../image/sp16.png",
+        price: 389000,
+        decrease: 299000,
+        discount: "-20%",
+    },
+    {
+        id: 8,
+        name: "Sandal Cao Gót DL0548",
+        image: "../image/sp8.png",
+        price: 499999,
+        decrease: 399999,
+        discount: "-10%",
+    },
+    {
+        id: 9,
+        name: "Guốc Đế Xuồng DL0537",
+        image: "../image/sp10.png",
+        price: 7200000,
+        promotion: "new",
+    },
+    ],
+    depguoc: [{
+            id: 1,
+            name: "Guốc Sục DL0556",
+            image: "../image/sp9.png",
+            price: 419000,
+            promotion: "new",
+        },
+        {
+            id: 2,
+            name: "Dép Guốc DL0542",
+            image: "../image/sp10.png",
+            price: 369000,
+            promotion: "new",
+        },
+        {
+            id: 3,
+            name: "Guốc Đế Xuồng DL0537",
+            image: "../image/sp10.png",
+            price: 7200000,
+            promotion: "new",
+        },
+        {
+            id: 4,
+            name: "Dép Guốc DL0538",
+            image: "../image/sp11.png",
+            price: 312000,
+            promotion: "new",
+        },
+        {
+            id: 5,
+            name: "Dép Bệt DL0528",
+            image: "../image/sp12.png",
+            price: 329000,
+            decrease: 229000,
+            discount: "-33%",
+        },
+        {
+            id: 6,
+            name: "Dép Guốc DL0527",
+            image: "../image/sp13.png",
+            price: 450000,
+            decrease: 400000,
+            discount: "-10%",
+        },
+        {
+            id: 7,
+            name: "Dép Bánh Mì AG0162",
+            image: "../image/sp14.png",
+            price: 290000,
+        },
+        {
+            id: 8,
+            name: "Guốc Sục DL0539 ",
+            image: "../image/sp15.png",
+            price: 550000,
+        },
+
+    ],
+    giaycaogot: [{
+        id: 1,
+        name: "Giày Slingback DL0560",
+        image: "../image/sp17.png",
+        price: 419000,
+        promotion: "new",
+    },
+    {
+        id: 2,
+        name: "Giày Bít DL0557",
+        image: "../image/sp18.png",
+        price: 369000,
+        promotion: "new",
+    },
+    {
+        id: 3,
+        name: "Giày Slingback DL0558",
+        image: "../image/sp19.png",
+        price: 172000,
+        promotion: "new",
+    },
+    {
+        id: 4,
+        name: "Giày Bít DL0555",
+        image: "../image/sp20.png",
+        price: 320000,
+        promotion: "new",
+    },
+    {
+        id: 5,
+        name: "Giày Slingback DL0554",
+        image: "../image/sp21.png",
+        price: 329000,
+        decrease: 229000,
+        discount: "-33%",
+    },
+    {
+        id: 6,
+        name: "Giày Bít DL0552",
+        image: "../image/sp22.png",
+        price: 479000,
+        decrease: 420000,
+        discount: "-10%",
+    },
+    {
+        id: 7,
+        name: "Giày Bít DL0553",
+        image: "../image/sp23.png",
+        price: 290000,
+    },
+    {
+        id: 8,
+        name: "Giày Bít DL0545",
+        image: "../image/sp24.png",
+        price: 350000,
+    },
+
+],
+
+    giaybupbe: [{
+        id: 1,
+        name: "Giày Búp Bê DL0559",
+        image: "../image/sp25.png",
+        price: 319000,
+        promotion: "new",
+    },
+    {
+        id: 2,
+        name: "Giày Búp Bê AA0439",
+        image: "../image/sp26.png",
+        price: 369000,
+        promotion: "new",
+    },
+    {
+        id: 3,
+        name: "Giày Búp Bê AA0470",
+        image: "../image/sp27.png",
+        price: 172000,
+        promotion: "new",
+    },
+    {
+        id: 4,
+        name: "Giày Búp Bê AA0438",
+        image: "../image/sp28.png",
+        price: 320000,
+        promotion: "new",
+    },
+    {
+        id: 5,
+        name: "Giày Búp Bê AA0477",
+        image: "../image/sp29.png",
+        price: 329000,
+        decrease: 229000,
+        discount: "-33%",
+    },
+    {
+        id: 6,
+        name: "Giày Búp Bê AA0493",
+        image: "../image/sp30.png",
+        price: 479000,
+        decrease: 420000,
+        discount: "-10%",
+    },
+    {
+        id: 7,
+        name: "Giày Búp Bê AA0502",
+        image: "../image/sp31.png",
+        price: 290000,
+    },
+    {
+        id: 8,
+        name: "Giày Búp Bê AA0489",
+        image: "../image/sp32.png",
+        price: 350000,
+    },
+],
+};
+const productsData2 = {
+    newProducts: [{
+        id: 1,
+        name: "Giày Slingback DL0560",
+        image: "../image/sp17.png",
+        price: 419000,
+        promotion: "new",
+    },
+    {
+        id: 2,
+        name: "Giày Bít DL0557",
+        image: "../image/sp18.png",
+        price: 369000,
+        promotion: "new",
+    },
+    {
+        id: 3,
+        name: "Giày Slingback DL0558",
+        image: "../image/sp19.png",
+        price: 172000,
+        promotion: "new",
+    },
+    {
+        id: 4,
+        name: "Giày Bít DL0555",
+        image: "../image/sp20.png",
+        price: 320000,
+        promotion: "new",
+    },
+    ],
+    popularProduct: [
+        {
+            id: 6,
+            name: "Dép Guốc DL0527",
+            image: "../image/sp13.png",
+            price: 450000,
+            decrease: 400000,
+            discount: "-10%",
+        },
+        {
+            id: 7,
+            name: "Dép Bánh Mì AG0162",
+            image: "../image/sp14.png",
+            price: 290000,
+        },
+        {
+            id: 8,
+            name: "Guốc Sục DL0539 ",
+            image: "../image/sp15.png",
+            price: 550000,
+        },
+    ],
+    discountProduct: [{
+        id: 1,
+        name: "Sandal Cao Gót DL0565",
+        image: "../image/sanpham1.png",
+        price: 799000,
+        decrease: 399000,
+    },
+    {
+        id: 2,
+        name: "Sandal Cao Gót DL0547",
+        image: "../image/sp2.png",
+        price: 899000,
+        decrease: 399000,
+    },
+    {
+        id: 3,
+        name: "Dép Classic Lined Clog",
+        image: "../image/sp3.png",
+        price: 799000,
+        decrease: 299000,
+        discount: "-33%",
+    },
+    {
+        id: 4,
+        name: "Sandal Cao Gót DL0548",
+        image: "../image/sp4.png",
+        price: 709000,
+        decrease: 399000,
+    },
+    ],
+};
+            // Hàm hiển thị danh sách sản phẩm
+            function displayProducts() {
+            const tableBody = document.querySelector('#product-table tbody');
+            tableBody.innerHTML = '';
+            productsData.newProducts.forEach(product => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${product.id}</td>
+                    <td>${product.name}</td>
+                    <td><img src="${product.image}" alt="${product.name}" width="50"></td>
+                    <td>${product.price.toLocaleString('vi-VN')} VND</td>
+                    <td>${product.promotion || ''}</td>
+                    <td>${product.decrease ? product.decrease.toLocaleString('vi-VN') + ' VND (' + (product.discount || '') + ')' : ''}</td>
+                    <td><button onclick="viewProduct(${product.id})">Xem</button></td>
+                `;
+                tableBody.appendChild(row);
+            });
+        }
+
+        // Hàm hiển thị chi tiết sản phẩm
+        function viewProduct(productId) {
+            const product = productsData.newProducts.find(p => p.id === productId);
+            const productInfo = document.getElementById('product-info');
+            if (product) {
+                productInfo.innerHTML = `
+                    <strong>ID:</strong> ${product.id}<br>
+                    <strong>Tên sản phẩm:</strong> ${product.name}<br>
+                    <strong>Hình ảnh:</strong> <img src="${product.image}" alt="${product.name}" width="100"><br>
+                    <strong>Giá:</strong> ${product.price.toLocaleString('vi-VN')} VND<br>
+                    <strong>Khuyến mãi:</strong> ${product.promotion || ''}<br>
+                    <strong>Giảm giá:</strong> ${product.decrease ? product.decrease.toLocaleString('vi-VN') + ' VND (' + (product.discount || '') + ')' : ''}
+                `;
+            } else {
+                productInfo.innerHTML = 'Không tìm thấy sản phẩm.';
+            }
+        }
+
+        // Hiển thị danh sách sản phẩm khi tải trang và hiển thị chi tiết sản phẩm đầu tiên
+        window.onload = function() {
+            displayProducts();
+            if (productsData.newProducts.length > 0) {
+                viewProduct(productsData.newProducts[0].id);
+            }
+        };
+    </script>
+</body>
 </html>

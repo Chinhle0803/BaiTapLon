@@ -8,12 +8,11 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Times New Roman', Times, serif;
 }
 
 .main {
     width: 100%;
-    background-color: #535353;
 }
 
 
@@ -56,7 +55,6 @@
     font-size: 18px;
     margin: 0;
     font-weight: 600;
-    font-family: 'Times New Roman', Times, serif;
 }
 
 .header .nav ul li {
@@ -135,6 +133,7 @@
 
 .content {
     margin-top: 14vh;
+    background-color: #444343;
 }
 
 .content .login {
@@ -147,7 +146,7 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
     padding: 20px;
-    background-color: #fff;
+    background-color: antiquewhite;
 }
 
 .login .head {
@@ -156,13 +155,13 @@
     width: 100%;
 }
 
-.login .head h3 {
+.login .head h2 {
     font-weight: 500;
     font-size: 24px;
     margin-top: 10px;
 }
 
-.login .head h3:hover {
+.login .head h2:hover {
     cursor: pointer;
     color: var(--hover-color);
 }
@@ -469,6 +468,8 @@
 }
 
 
+/* Footer */
+
 .qc {
     cursor: pointer;
     width: 100%;
@@ -477,7 +478,7 @@
 .footer {
     width: 100%;
     height: 110%;
-    background-color: #f5ecec;
+    background-color: #ccc;
     margin-top: 34px;
 }
 

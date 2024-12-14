@@ -106,7 +106,7 @@ $(document).ready(() => {
               }
               <button class="btn" data-product='${JSON.stringify(
                 product
-              )}'>Thêm vào giỏ hàng</button>
+              )}'>Mua</button>
           </div>
       `;
   }
