@@ -3,6 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/all.min.css">
+    <link rel="stylesheet" href="../css/login.css">
+    <link rel="stylesheet" href="../css/all.min.css">
     <title>Quản lý sản phẩm</title>
     <style type="text/css" media="screen">
       body {
@@ -41,31 +44,145 @@
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Danh sách sản phẩm</h1>
-        <table id="product-table">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Tên sản phẩm</th>
-                    <th>Hình ảnh</th>
-                    <th>Giá</th>
-                    <th>Khuyến mãi</th>
-                    <th>Giảm giá</th>
-                    <th>Hành động</th>
-                </tr>
-            </thead>
-            <tbody>
-                <!-- Dữ liệu sản phẩm sẽ được thêm vào đây -->
-            </tbody>
-        </table>
-        <div id="product-details">
-            <h2>Chi tiết sản phẩm</h2>
-            <p id="product-info">Chọn một sản phẩm để xem chi tiết.</p>
-        </div>
-    </div>
+    <div class="main">
 
-    <script src="data.js"></script>
+        <div class="header">
+
+            <div class="logo">
+                <a href="#"><img class="logo" src="../image/logo.png" /></a>
+            </div>
+
+            <div class="nav">
+                <ul>
+                    <li><a href="introduce.html">Giới thiệu</a></li>
+                    <li><a href="home.html">Trang chủ</a></li>
+                    <li><a href="product.html">Sản phẩm</a></li>
+                    <li><a href="contact.html">Liên hệ</a></li>
+                </ul>
+            </div>
+
+            <div class="icons">
+                <div class="search">
+                    <input type="text" name="" id="" placeholder="Tìm kiếm">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </div>
+                <div class="cart">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                    <span class="quantity">0</span>
+                </div>
+                <div class="shopping-cart">
+                    <div class="head">
+                        <p>Giỏ hàng</p>
+                        <i class="fa-solid fa-xmark close-shopping-cart"></i>
+                    </div>
+                    <ul class="list-cart"></ul>
+                    <div class="checkout">
+                        <p class="total"></p>
+                        <p class="payment" data-bs-toggle="modal" data-bs-target="#exampleModal">Thanh toán</p>
+                    </div>
+                </div>
+                <div class="user">
+                    <a href="login.html"><i class="fa-solid fa-user"></i></a>
+                </div>
+            </div>
+
+        </div>
+        <div class="container">
+            <h1>Danh sách sản phẩm</h1>
+            <table id="product-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Tên sản phẩm</th>
+                        <th>Hình ảnh</th>
+                        <th>Giá</th>
+                        <th>Khuyến mãi</th>
+                        <th>Giảm giá</th>
+                        <th>Hành động</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Dữ liệu sản phẩm sẽ được thêm vào đây -->
+                </tbody>
+            </table>
+            <div id="product-details">
+                <h2>Chi tiết sản phẩm</h2>
+                <p id="product-info">Chọn một sản phẩm để xem chi tiết.</p>
+            </div>
+        </div>
+        
+
+        <div class="footer">
+
+            <div class="contain">
+                <div class="information">
+                    <h2>Thông tin thêm</h2>
+                    <ul>
+                        <li>
+                            <a href="">
+                                <i class="fa-brands"></i>
+                                <span>Chính sách bảo hành</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="">
+                                <i class="fa-brands"></i>
+                                <span>Chính sách bảo mật thông tin</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="">
+                                <span>Câu Hỏi Thường Gặp</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="">
+                                <span>Chính sách vận chuyển</span>
+                            </a>
+                        </li>
+                        <li></li>
+                            <a href="">
+                                <span>Chính sách kiểm hàng, đổi trả, hoàn tiền</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="information">
+                    <h2>Về Dily</h2>
+                    <ul>
+                        <li>
+                            <a href="">
+                                <span>Giới thiệu</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="">
+                                <span>Liên hệ</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="map">
+                    <div class="map-link">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3918.8582379826526!2d106.68427047480561!3d10.822158889329412!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3174deb3ef536f31%3A0x8b7bb8b7c956157b!2zVHLGsOG7nW5nIMSQ4bqhaSBo4buNYyBDw7RuZyBuZ2hp4buHcCBUUC5IQ00!5e0!3m2!1svi!2s!4v1713196555625!5m2!1svi!2s"
+                            width="300" height="200" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                    <div class="contact">
+                        <p>
+                            Địa chỉ: Nguyễn Văn Bảo, Gò Vấp, Thành phố Hồ Chí Minh, Việt Nam. <br> <br> Số điện thoại 0123456789
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="copyright">
+                <p>© Bản quyền thuộc về <span></span> 2025</p>
+            </div>
+
+            </div>
+    
+
+    <script src="../js/data.js"></script>
     <script>
         // Hàm hiển thị danh sách sản phẩm
         function displayProducts() {
