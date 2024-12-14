@@ -1,29 +1,22 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; img-src data:; connect-src 'self'">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="../css/home.css">
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <script src="../js/bootstrap.bundle.min.js"></script>
     <title>Chi tiết sản phẩm</title>
-    <style type="text/css" media="screen">
+    <style>
+
       body {
         background-color: #f1f1f1;
         margin: 0;
         font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        display: flex;
+        justify-content: center;
       }
-
-      .container { margin: 50px auto 40px auto; width: 600px; text-align: center; }
-
-      a { color: #4183c4; text-decoration: none; }
-      a:hover { text-decoration: underline; }
-
-      h1 { width: 800px; position:relative; left: -100px; letter-spacing: -1px; line-height: 60px; font-size: 60px; font-weight: 100; margin: 0px 0 50px 0; text-shadow: 0 1px 0 #fff; }
-      p { color: rgba(0, 0, 0, 0.5); margin: 20px 0; line-height: 1.6; }
-
-      ul { list-style: none; margin: 25px 0; padding: 0; }
-      li { display: table-cell; font-weight: bold; width: 1%; }
-
-      .logo { display: inline-block; margin-top: 35px; }
-      .logo-img-2x { display: none; }
       @media
       only screen and (-webkit-min-device-pixel-ratio: 2),
       only screen and (   min--moz-device-pixel-ratio: 2),
@@ -34,114 +27,259 @@
         .logo-img-1x { display: none; }
         .logo-img-2x { display: inline-block; }
       }
+
+      .product-details {
+        text-align: left;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .product-details h2 {
+        font-size: 24px;
+        margin-bottom: 20px;
+      }
+
+      .product-details img {
+        width: 400px;
+        height: 400px;
+        margin-bottom: 20px;
+        display: flex;
+        justify-content: center;
+      }
+
+      .product-details p {
+        font-size: 16px;
+        margin-bottom: 10px;
+      }
+
+      .product-details strong {
+        font-weight: bold;
+      }
     </style>
-  </head>
-  <body>
-    <div class="container">
-      <h1>Chi tiết sản phẩm</h1>
-      <div id="product-details">
-        <!-- Chi tiết sản phẩm sẽ được hiển thị ở đây -->
+</head>
+<body>
+
+    <div class="main">
+
+      <div class="header">
+
+          <div class="logo">
+              <a href="../HTML/index.html"><img class="logo" src="../image/logo.png" /></a>
+          </div>
+
+          <div class="nav">
+              <ul>
+                  <li><a href="introduce.html">Giới thiệu</a></li>
+                  <li><a href="home.html">Trang chủ</a></li>
+                  <li><a href="product.html">Sản phẩm</a></li>
+                  <li><a href="contact.html">Liên hệ</a></li>
+              </ul>
+          </div>
+
+          <div class="icons">
+              <div class="search">
+                  <input type="text" name="" id="" placeholder="Tìm kiếm">
+                  <i class="fa-solid fa-magnifying-glass"></i>
+              </div>
+              <div class="cart">
+                  <i class="fa-solid fa-cart-shopping"></i>
+                  <span class="quantity">0</span>
+              </div>
+              <div class="shopping-cart">
+                  <div class="head">
+                      <p>Giỏ hàng</p>
+                      <i class="fa-solid fa-xmark close-shopping-cart"></i>
+                  </div>
+                  <ul class="list-cart"></ul>
+                  <div class="checkout">
+                      <p class="total"></p>
+                      <p class="payment" data-bs-toggle="modal" data-bs-target="#exampleModal">Thanh toán</p>
+                  </div>
+              </div>
+              <div class="user">
+                  <a href="login.html"><i class="fa-solid fa-user"></i></a>
+              </div>
+          </div>
+
       </div>
+      <div class="container">
+        <h1>Chi tiết sản phẩm</h1>
+        <div id="product-details" class="product-details">
+            <!-- Chi tiết sản phẩm sẽ được hiển thị ở đây -->
+        </div>
     </div>
+      <div class="footer">
 
+          <div class="contain">
+              <div class="information">
+                  <h2>Thông tin thêm</h2>
+                  <ul>
+                      <li>
+                          <a href="">
+                              <i class="fa-brands"></i>
+                              <span>Chính sách bảo hành</span>
+                          </a>
+                      </li>
+                      <li>
+                          <a href="">
+                              <i class="fa-brands"></i>
+                              <span>Chính sách bảo mật thông tin</span>
+                          </a>
+                      </li>
+                      <li>
+                          <a href="">
+                              <span>Câu Hỏi Thường Gặp</span>
+                          </a>
+                      </li>
+                      <li>
+                          <a href="">
+                              <span>Chính sách vận chuyển</span>
+                          </a>
+                      </li>
+                      <li></li>
+                          <a href="">
+                              <span>Chính sách kiểm hàng, đổi trả, hoàn tiền</span>
+                          </a>
+                      </li>
+                  </ul>
+              </div>
+              <div class="information">
+                  <h2>Về Dily</h2>
+                  <ul>
+                      <li>
+                          <a href="">
+                              <span>Giới thiệu</span>
+                          </a>
+                      </li>
+                      <li>
+                          <a href="">
+                              <span>Liên hệ</span>
+                          </a>
+                      </li>
+                  </ul>
+              </div>
+              <div class="map">
+                  <div class="map-link">
+                      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3918.8582379826526!2d106.68427047480561!3d10.822158889329412!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3174deb3ef536f31%3A0x8b7bb8b7c956157b!2zVHLGsOG7nW5nIMSQ4bqhaSBo4buNYyBDw7RuZyBuZ2hp4buHcCBUUC5IQ00!5e0!3m2!1svi!2s!4v1713196555625!5m2!1svi!2s"
+                          width="300" height="200" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                  </div>
+                  <div class="contact">
+                      <p>
+                          Địa chỉ: Nguyễn Văn Bảo, Gò Vấp, Thành phố Hồ Chí Minh, Việt Nam. <br> <br> Số điện thoại 0123456789
+                      </p>
+                  </div>
+              </div>
+          </div>
+
+          <div class="copyright">
+              <p>© Bản quyền thuộc về <span></span> 2025</p>
+          </div>
+
+      </div>
+
+      
+
+  </div>
     <script>
-      const productsData = {
-        newProducts: [
-          {
-            id: 1,
-            name: "Sandal Cao Gót DL0565",
-            image: "../image/sanpham1.png",
-            price: 349000,
-            promotion: "new",
-          },
-          {
-            id: 2,
-            name: "Sandal Cao Gót DL0547",
-            image: "../image/sp2.png",
-            price: 379000,
-            promotion: "new",
-          },
-          {
-            id: 3,
-            name: "Dép Classic Lined Clog",
-            image: "../image/sp3.png",
-            price: 799000,
-            decrease: 399000,
-            discount: "-33%",
-          },
-          {
-            id: 4,
-            name: "Sandal Cao Gót DL0548",
-            image: "../image/sp4.png",
-            price: 369000,
-            promotion: "new",
-          },
-          {
-            id: 5,
-            name: "Sandal Cao Gót DL0549",
-            image: "../image/sp5.png",
-            price: 289000,
-            promotion: "new",
-          },
-          {
-            id: 6,
-            name: "Sandal Đế Đúp DL0546",
-            image: "../image/sp6.png",
-            price: 490000,
-            decrease: 329000,
-            discount: "-21%",
-          },
-          {
-            id: 7,
-            name: "Sandal Cao Gót DL0534",
-            image: "../image/sp7.png",
-            price: 389000,
-            decrease: 299000,
-            discount: "-20%",
-          },
-          {
-            id: 8,
-            name: "Sandal Cao Gót DL0548",
-            image: "../image/sp8.png",
-            price: 499999,
-            decrease: 399999,
-            discount: "-10%",
-          },
-        ],
-      };
+        const productsData = {
+            newProducts: [
+                {
+                    id: 1,
+                    name: "Sandal Cao Gót DL0565",
+                    image: "../image/sanpham1.png",
+                    price: 349000,
+                    promotion: "new",
+                },
+                {
+                    id: 2,
+                    name: "Sandal Cao Gót DL0547",
+                    image: "../image/sp2.png",
+                    price: 379000,
+                    promotion: "new",
+                },
+                {
+                    id: 3,
+                    name: "Dép Classic Lined Clog",
+                    image: "../image/sp3.png",
+                    price: 799000,
+                    decrease: 399000,
+                    discount: "-33%",
+                },
+                {
+                    id: 4,
+                    name: "Sandal Cao Gót DL0548",
+                    image: "../image/sp4.png",
+                    price: 369000,
+                    promotion: "new",
+                },
+                {
+                    id: 5,
+                    name: "Sandal Cao Gót DL0549",
+                    image: "../image/sp5.png",
+                    price: 289000,
+                    promotion: "new",
+                },
+                {
+                    id: 6,
+                    name: "Sandal Đế Đúp DL0546",
+                    image: "../image/sp6.png",
+                    price: 490000,
+                    decrease: 329000,
+                    discount: "-21%",
+                },
+                {
+                    id: 7,
+                    name: "Sandal Cao Gót DL0534",
+                    image: "../image/sp7.png",
+                    price: 389000,
+                    decrease: 299000,
+                    discount: "-20%",
+                },
+                {
+                    id: 8,
+                    name: "Sandal Cao Gót DL0548",
+                    image: "../image/sp8.png",
+                    price: 499999,
+                    decrease: 399999,
+                    discount: "-10%",
+                },
+            ],
+        };
 
-      function getProductById(productId) {
-        return productsData.newProducts.find(product => product.id === productId);
-      }
-
-      function displayProductDetails(productId) {
-        const product = getProductById(productId);
-        const productDetailsDiv = document.getElementById('product-details');
-        if (product) {
-          productDetailsDiv.innerHTML = `
-            <h2>${product.name}</h2>
-            <img src="${product.image}" alt="${product.name}" width="200">
-            <p><strong>Giá:</strong> ${product.price.toLocaleString('vi-VN')} VND</p>
-            <p><strong>Khuyến mãi:</strong> ${product.promotion || 'Không có'}</p>
-            <p><strong>Giảm giá:</strong> ${product.decrease ? product.decrease.toLocaleString('vi-VN') + ' VND (' + product.discount + ')' : 'Không có'}</p>
-          `;
-        } else {
-          productDetailsDiv.innerHTML = '<p>Không tìm thấy sản phẩm.</p>';
+        function getProductById(productId) {
+            return productsData.newProducts.find(product => product.id === productId);
         }
-      }
 
-      // Lấy ID sản phẩm từ URL (giả sử URL có dạng ?id=1)
-      const urlParams = new URLSearchParams(window.location.search);
-      const productId = parseInt(urlParams.get('id'), 10);
-
-      // Hiển thị chi tiết sản phẩm khi tải trang
-      window.onload = function() {
-        if (!isNaN(productId)) {
-          displayProductDetails(productId);
-        } else {
-          document.getElementById('product-details').innerHTML = '<p>ID sản phẩm không hợp lệ.</p>';
+        function displayProductDetails(productId) {
+            const product = getProductById(productId);
+            const productDetailsDiv = document.getElementById('product-details');
+            if (product) {
+                productDetailsDiv.innerHTML = `
+                    <h2>${product.name}</h2>
+                    <img src="${product.image}" alt="${product.name}">
+                    <p><strong>Giá:</strong> ${product.price.toLocaleString('vi-VN')} VND</p>
+                    <p><strong>Khuyến mãi:</strong> ${product.promotion || 'Không có'}</p>
+                    <p><strong>Giảm giá:</strong> ${product.decrease ? product.decrease.toLocaleString('vi-VN') + ' VND (' + product.discount + ')' : 'Không có'}</p>
+                `;
+            } else {
+                productDetailsDiv.innerHTML = '<p>Không tìm thấy sản phẩm.</p>';
+            }
         }
-      };
+
+        // Lấy ID sản phẩm từ URL (giả sử URL có dạng ?id=1)
+        const urlParams = new URLSearchParams(window.location.search);
+        const productId = parseInt(urlParams.get('id'), 10);
+
+        // Hiển thị chi tiết sản phẩm khi tải trang
+        window.onload = function() {
+            if (!isNaN(productId)) {
+                displayProductDetails(productId);
+            } else {
+                document.getElementById('product-details').innerHTML = '<p>ID sản phẩm không hợp lệ.</p>';
+            }
+        };
     </script>
-  </body>
-</html>s
+</body>
+</html>
